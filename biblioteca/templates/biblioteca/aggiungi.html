@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Aggiungi libro</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label for="titolo">Titolo: 
+        <input name="titolo" required>
+    </label>
+    <label for="autore">Autore: 
+        <input name="autore" required>
+    </label>
+    <label for="anno">Anno: 
+        <input type="number" name="anno">
+    </label>
+    <button>Aggiungi</button>
+</form>
+{% endblock %}

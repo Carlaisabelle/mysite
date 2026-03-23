@@ -1,0 +1,23 @@
+<!-- Qui: sto ereditando il layout da base.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>I nostri libri:</h1>
+    <ul>
+        <!-- Qui: il ciclo che popola la pagina e crea un link per ogni libro -->
+        {% for libro in libri %}
+        <li>
+            <a href="{% url 'dettaglio' id=forloop.counter0 %}">
+                "{{ libro.titolo }}", di {{ libro.autore }} ({{ libro.anno }}) | <a href="{% url 'modifica' id=libro.id %}">Modifica</a> | <a href="{% url 'elimina' id=libro.id %}">Elimina</a>
+            </a>
+            <!-- Qua ci vanno poi anche i link per modificare o eliminare i singoli libri -->
+            {% if libro.genere %}
+               ({{ libro.genere }})
+            {% endif %}
+        </li>
+        <!-- Qui: entra in questo pezzo se non ci sono libri nella lista -->
+         {% empty %}
+         <li>Nessun libro disponibile</li>
+        {% endfor %}
+    </ul>  
+{% endblock %}

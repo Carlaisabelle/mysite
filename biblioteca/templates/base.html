@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Biblioteca Django</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a> | 
+        <a href="{% url 'lista' %}">Libri</a> | 
+        <a href="{% url 'catalogo' %}">Catalogo</a> | 
+        <a href="{% url 'autori' %}">Autori</a> | 
+        <a href="{% url 'admin:index' %}">Admin</a> | 
+        {% if user.is_authenticated %}
+        Ciao {{ user.username }} |
+        <a href="{% url 'aggiungi' %}">Aggiungi</a>
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="background: none; border: none; color: inherit; text-decoration: underline; cursor: pointer;">Logout</button>
+        </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>2026 - Corso Python</footer>    
+</body>
+</html>

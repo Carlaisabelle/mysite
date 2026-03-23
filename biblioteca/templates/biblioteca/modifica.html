@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Modifica {{libro.titolo}}</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="titolo">Titolo: 
+        <input name="titolo" value="{{libro.titolo}}">
+    </label>
+    <label for="autore">Autore: 
+        <input name="autore" value="{{libro.autore}}">
+    </label>
+    <label for="anno">Anno: 
+        <input name="anno" value="{{libro.anno}}">
+    </label>
+    <label for="genere">Genere: 
+        <input name="genere" value="{{libro.genere}}">
+    </label>
+    <label for="lingua_og">Lingua originale: 
+        <input name="lingua_og" value="{{libro.lingua_og}}">
+    </label>
+    <button>Salva</button>
+</form>
+{% endblock %}

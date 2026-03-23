@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Catalogo biblioteca</h1>
+
+<!-- Qui dentro: c'è una variabile di contesto che si aggiorna all'aggiornarsi del numero di libri -->
+<p>Totale libri nella biblioteca: {{ totalelibri }}</p>
+
+<ul>
+    <!-- Ciclo for che riprende i libri -->
+     {% for libro in libri %}
+        {% if libro.autore == 'Luciano Ligabue' %}
+        <!-- Se il libro è di Luciano Ligabue, allora sarà tutto maiuscolo (| upper) e grassetto -->
+        <li><strong>{{ libro.titolo | upper }} (di {{ libro.autore }})</strong></li>
+        {% else %}
+            <li>{{ libro.titolo }} (di {{ libro.autore }})</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}
